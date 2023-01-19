@@ -1,0 +1,57 @@
+{% set name = "bigbang-py" %}
+{% set version = "0.4.4" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/bigbang-py-{{ version }}.tar.gz
+  sha256: b7be5a30f285e23301995cc83c76a6951f1875b90aae2bf76ec3fd11c5ac58d3
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python >=3.7
+    - pip
+  run:
+    - python >=3.7
+    - beautifulsoup4 >=4.9.3
+    - chardet >=4.0.0
+    - gitpython
+    - html2text >=2020.1.16
+    - matplotlib-base >=3.4.1
+    - networkx >=2.5.1
+    - numpy >=1.20.2
+    - pandas >=1.2.3
+    - python-dateutil >=2.8.1
+    - python-levenshtein >=0.12.2
+    - pytz >=2021.1
+    - pyyaml >=5.4.1
+    - requests >=2.25.1
+    - tqdm >=4.60.0
+    - validator-collection >=1.5.0
+    - python-docx >=0.8
+
+
+test:
+  imports:
+    - bigbang
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://pypi.org/project/bigbang-py/
+  summary: BigBang is a toolkit for studying communications data from collaborative projects. It currently supports analyzing mailing lists from Sourceforge, Mailman, ListServ, or .mbox files.
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - MridulS
